@@ -5,6 +5,7 @@ import { TipoProducto } from './entities/tipo-producto.entity';
 import { Bodega } from './entities/bodega.entity';
 import { RegistroProducto } from './entities/registro-producto.entity';
 import { Stock } from './entities/stock.entity';
+import { Persona } from './entities/persona.entity';
 
 @Module({
   imports: [
@@ -15,10 +16,10 @@ import { Stock } from './entities/stock.entity';
       username: 'root',
       password: '1234',     //'TM@gF2l#JOs1',
       database: 'inventario_ips_cha',
-      entities: [Producto, TipoProducto, Bodega, RegistroProducto, Stock],
+      entities: [Producto, TipoProducto, Bodega, RegistroProducto, Stock, Persona],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Producto, TipoProducto, Bodega, RegistroProducto, Stock]),
+    TypeOrmModule.forFeature([Producto, TipoProducto, Bodega, RegistroProducto, Stock, Persona]),
   ],
 })
 export class AppModule {}
@@ -47,5 +48,6 @@ import { TipoProductoModule } from './tipo-producto/tipo-producto.module';
     BodegaModule,
     TipoProductoModule,
   ],
+
 })
 export class AppModule {}

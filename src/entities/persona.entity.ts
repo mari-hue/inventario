@@ -14,7 +14,10 @@ export class Persona {
 
 
   @Column ({nullable: true})
-  email?:String;
-
+  email?:string;
+  @OneTomany(() => RegistroProducto, (r) => r.personaDespacha)
+  despachos: RegistroProducto[];
+  @OneToMany (() => RegistroProducto, (r) => r.peersonaRecibe)
+  recepciones: RegistroProducto[];
 
 }
