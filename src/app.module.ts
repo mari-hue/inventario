@@ -10,10 +10,10 @@ import { Stock } from './entities/stock.entity';
   imports: [
    TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: '10.66.20.19',
       port: 3306,
       username: 'root',
-      password: 'makelsin',
+      password: '1234',     //'TM@gF2l#JOs1',
       database: 'inventario_ips_cha',
       entities: [Producto, TipoProducto, Bodega, RegistroProducto, Stock],
       synchronize: true,
