@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { RegistroProducto } from './registro-producto.entity';
 
 @Entity('persona')
@@ -9,12 +9,12 @@ export class Persona {
   @Column()
   nombre: string;
 
-    @Column()
+  @Column()
   cargo: string;
-
 
   @Column ({nullable: true})
   email?:string;
+
   @OneTomany(() => RegistroProducto, (r) => r.personaDespacha)
   despachos: RegistroProducto[];
   @OneToMany (() => RegistroProducto, (r) => r.peersonaRecibe)
