@@ -1,6 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn,} from 'typeorm';
 import { Producto } from './producto.entity';
 import { Bodega } from './bodega.entity';
+import { Persona } from './persona.entity';
+
+export enum TipoMovimiento {
+  INGRESO = 'ingreso',
+  DESPACHO = 'despacho',
+}
 
 @Entity('registro_producto')
 export class RegistroProducto {
@@ -26,8 +32,8 @@ export class RegistroProducto {
   @Column({ nullable: true })
   observacion: string;
 
-  @Column()
-  tipo_movimiento: 'ingreso' | 'despacho';
+  @Column({ type: 'enum', enum: TipoMovimiento })
+  tipo_movimiento: TipoMovimiento;
 
   @ManyToOne(() => Bodega)
   @JoinColumn({ name: 'id_bodega_origen' })
@@ -38,4 +44,12 @@ export class RegistroProducto {
 
   @Column({ nullable: true })
   ubicacion_actual: string;
+
+  @ManyToOne(() => Persona, { nullable: true })
+  @JoinColumn({ name: 'id_persona_despacha' })
+  persona_despacha: Persona;
+
+  @ManyToOne(() => Persona, { nullable: true })
+  @JoinColumn({ name: 'id_persona_recibe' })
+  persona_recibe: Persona;
 }
