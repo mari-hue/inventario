@@ -25,7 +25,6 @@ import { PersonaModule } from './persona/persona.module';
 
       // options: process.env.DB_TYPE === 'mssql' ? { encrypt: false } : undefined,
     }),
-    // Módulos de funcionalidades
     ProductoModule,
     BodegaModule,
     TipoProductoModule,
