@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
-// Módulos de funcionalidades
 import { ProductoModule } from './producto/producto.module';
 import { BodegaModule } from './bodega/bodega.module';
 import { TipoProductoModule } from './tipo-producto/tipo-producto.module';
@@ -14,7 +13,7 @@ import { PersonaModule } from './persona/persona.module';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
-      type: process.env.DB_TYPE as 'mssql',
+      type: 'mssql',
       host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT || '1433', 10),
       username: process.env.DB_USERNAME,
@@ -22,8 +21,10 @@ import { PersonaModule } from './persona/persona.module';
       database: process.env.DB_NAME,
       synchronize: process.env.DB_SYNCHRONIZE === 'true',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-
-      options: process.env.DB_TYPE === 'mssql' ? { encrypt: false } : undefined,
+      extra: {
+        trustServerCertificate: true,
+        encrypt: false,
+      },
     }),
     ProductoModule,
     BodegaModule,
