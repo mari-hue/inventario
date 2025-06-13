@@ -9,22 +9,17 @@ import { PersonaModule } from './persona/persona.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
-      type: 'mssql',
+      type: 'postgres',
       host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT || '1433', 10),
-      username: process.env.DB_USERNAME,
+      port: parseInt(process.env.DB_PORT || '5432', 10),
+      username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       synchronize: process.env.DB_SYNCHRONIZE === 'true',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      extra: {
-        trustServerCertificate: true,
-        encrypt: false,
-      },
+      ssl: false, // ponlo en true si te conectas a un servicio con SSL obligatorio
     }),
     ProductoModule,
     BodegaModule,

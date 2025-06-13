@@ -12,7 +12,7 @@ export class BodegaController {
     return this.bodegaService.create(createBodegaDto);
   }
 
-  @Get()
+  @Get('obtienetodo')
   findAll() {
     return this.bodegaService.findAll();
   }
