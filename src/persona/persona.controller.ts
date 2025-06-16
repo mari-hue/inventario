@@ -12,7 +12,7 @@ export class PersonaController {
     return this.personaService.create(dto);
   }
 
-  @Get()
+  @Get('obtieneTodo')
   findAll() {
     return this.personaService.findAll();
   }

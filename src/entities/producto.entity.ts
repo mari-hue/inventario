@@ -1,29 +1,34 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { TipoProducto } from './tipo-producto.entity';
-import { Persona } from './persona.entity'; 
-
+import { RegistroProducto } from './registro-producto.entity';
+import { Stock } from './stock.entity';
 
 @Entity('producto')
 export class Producto {
   @PrimaryGeneratedColumn({ name: 'id_producto' })
   id: number;
 
-  @Column()
+  @Column({ length: 100, nullable: true })
   modelo: string;
 
-  @Column()
+  @Column({ length: 100, nullable: true })
   marca: string;
 
+  @Column({ name: 'serie_id', length: 100, unique: true })
+  serieId: string;
+
+  @Column({ length: 20, default: 'nuevo' })
+  estado: 'nuevo' | 'usado' | 'en baja';
+
+  @Column({ name: 'fecha_ingreso', type: 'date', nullable: true })
+  fechaIngreso: Date;
+
   @ManyToOne(() => TipoProducto, (tipo) => tipo.productos)
-  @JoinColumn({ name: 'id_tipo_producto' })
   tipoProducto: TipoProducto;
 
-  @ManyToOne(() => Persona)
-  @JoinColumn({ name: 'id_persona_despacha'})
-  personaDespacha: Persona;
+  @OneToMany(() => Stock, (stock) => stock.producto)
+  stock: Stock[];
 
-  @ManyToOne (() => Persona)
-  @JoinColumn({ name: 'id_persona_recibe' })
-  personaRecibe: Persona;
-
+  @OneToMany(() => RegistroProducto, (registro) => registro.producto)
+  registros: RegistroProducto[];
 }

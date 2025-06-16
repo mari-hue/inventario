@@ -1,21 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Unique, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Producto } from './producto.entity';
 import { Bodega } from './bodega.entity';
 
 @Entity('stock')
-@Unique(['producto', 'bodega'])
 export class Stock {
   @PrimaryGeneratedColumn({ name: 'id_stock' })
   id: number;
 
-  @ManyToOne(() => Producto)
-  @JoinColumn({ name: 'id_producto' })
+  @ManyToOne(() => Producto, (producto) => producto.stock)
   producto: Producto;
 
-  @ManyToOne(() => Bodega)
-  @JoinColumn({ name: 'id_bodega' })
+  @ManyToOne(() => Bodega, (bodega) => bodega.stock)
   bodega: Bodega;
 
-  @Column({ type: 'int' })
+  @Column()
   cantidad: number;
 }
