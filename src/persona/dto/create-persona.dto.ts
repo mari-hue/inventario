@@ -1,5 +1,9 @@
+
 export class CreatePersonaDto {
   nombre: string;
-  cargo: string;
+  apellido: string;
+  cargo?: string;
   email?: string;
+  telefono?: string;
+  rut?: string;
 }

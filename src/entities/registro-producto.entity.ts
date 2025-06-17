@@ -52,4 +52,9 @@ export class RegistroProducto {
   @ManyToOne(() => Persona, { nullable: true })
   @JoinColumn({ name: 'id_persona_recibe' })
   persona_recibe: Persona;
+
+  @ManyToOne(() => Persona, (persona) => persona.registrosCreados)
+  @JoinColumn({ name: 'usuario_registra_id' })
+  usuarioRegistra: Persona;
+
 }

@@ -1,8 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,JoinColumn } from 'typeorm';
 import { Producto } from './producto.entity';
 import { Bodega } from './bodega.entity';
 import { Persona } from './persona.entity';
 import { MovimientoTipo } from './movimiento_tipo.entity';
+
 
 @Entity('registro_producto')
 export class RegistroProducto {
@@ -39,8 +40,10 @@ export class RegistroProducto {
   @ManyToOne(() => Bodega, (bodega) => bodega.registros)
   bodegaOrigen: Bodega;
 
-  @ManyToOne(() => Persona, (persona) => persona.despachos)
+  @ManyToOne(() => Persona, (persona) => persona.registros_despacho)
+  @JoinColumn({ name: 'id_persona_despacha' })
   personaDespacha: Persona;
+
 
   @ManyToOne(() => Persona, (persona) => persona.recepciones)
   personaRecibe: Persona;
