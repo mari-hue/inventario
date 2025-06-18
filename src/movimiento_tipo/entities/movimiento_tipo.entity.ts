@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { RegistroProducto } from './registro-producto.entity';
+import { RegistroProducto } from '../../registro-producto/entities/registro-producto.entity';
 
 @Entity('movimiento_tipo')
 export class MovimientoTipo {
@@ -9,6 +9,6 @@ export class MovimientoTipo {
   @Column({ length: 20, unique: true })
   nombre: string;
 
-  @OneToMany(() => RegistroProducto, (registro) => registro.tipo_movimiento)
+  @OneToMany(() => RegistroProducto, (registro) => registro.tipoMovimiento)
   registros: RegistroProducto[];
 }

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Bodega } from '../entities/bodega.entity'; // Assuming Bodega entity path
+import { Bodega } from './entities/bodega.entity'; // Assuming Bodega entity path
 import { CreateBodegaDto } from './dto/create-bodega.dto';
 import { UpdateBodegaDto } from './dto/update-bodega.dto';
 
@@ -24,7 +24,7 @@ export class BodegaService {
   async findOne(id: number): Promise<Bodega> {
     const bodega = await this.bodegaRepository.findOneBy({ id });
     if (!bodega) {
-      throw new NotFoundException(`Bodega with ID ${id} not found`);
+      throw new NotFoundException(`Bodega con ID ${id} no encontrado`);
     }
     return bodega;
   }
@@ -38,7 +38,7 @@ export class BodegaService {
   async remove(id: number): Promise<void> {
     const result = await this.bodegaRepository.delete(id);
     if (result.affected === 0) {
-      throw new NotFoundException(`Bodega with ID ${id} not found`);
+      throw new NotFoundException(`Bodega con ID ${id} no encontrado`);
     }
   }
 }

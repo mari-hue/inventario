@@ -1,14 +1,7 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  OneToMany,
-  JoinColumn
-} from 'typeorm';
-import { Persona } from './persona.entity';
-import { Stock } from './stock.entity';
-import { RegistroProducto } from './registro-producto.entity';
+import { Entity,PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn} from 'typeorm';
+import { Persona } from '../../persona/entities/persona.entity';
+import { Stock } from '../../stock/entities/stock.entity';
+import { RegistroProducto } from '../../registro-producto/entities/registro-producto.entity';
 
 @Entity('bodega')
 export class Bodega {
@@ -34,6 +27,6 @@ export class Bodega {
   stock: Stock[];
 
   // Relación con RegistroProducto (origen del movimiento)
-  @OneToMany(() => RegistroProducto, (registro) => registro.bodega_origen)
+  @OneToMany(() => RegistroProducto, (registro) => registro.bodegaOrigen)
   registros: RegistroProducto[];
 }

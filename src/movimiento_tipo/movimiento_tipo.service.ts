@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { MovimientoTipo } from '../entities/movimiento_tipo.entity';
+import { MovimientoTipo } from '../movimiento_tipo/entities/movimiento_tipo.entity';
 
 @Injectable()
 export class MovimientoTipoService {

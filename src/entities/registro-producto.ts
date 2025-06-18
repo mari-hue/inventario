@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,JoinColumn } from 'typeorm';
-import { Producto } from './producto.entity';
-import { Bodega } from './bodega.entity';
-import { Persona } from './persona.entity';
-import { MovimientoTipo } from './movimiento_tipo.entity';
+import { Producto } from '../producto/entities/producto.entity';
+import { Bodega } from '../bodega/entities/bodega.entity';
+import { Persona } from '../persona/entities/persona.entity';
+import { MovimientoTipo } from '../movimiento_tipo/entities/movimiento_tipo.entity';
 
 
 @Entity('registro_producto')

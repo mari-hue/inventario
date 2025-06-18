@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { Persona } from './entities/persona.entity';
-import { TipoProducto } from './entities/tipo-producto.entity';
+import { Persona } from './persona/entities/persona.entity';
+import { TipoProducto } from './tipo-producto/entities/tipo-producto.entity';
 // Agrega tus entidades aquí
 
 export const AppDataSource = new DataSource({

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Persona } from '../entities/persona.entity';
+import { Persona } from './entities/persona.entity';
 import { PersonaService } from './persona.service';
 import { PersonaController } from './persona.controller';
 
